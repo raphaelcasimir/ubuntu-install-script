@@ -6,14 +6,14 @@ function getTxz(){
 	| cut -d : -f 2,3 \
 	| tr -d \" \
 	| wget -i -
-	tar xvf *.tar.xz -C ~/apps
+	tar xvf *.tar.xz -C ~/Apps
 	rm *.tar.xz
 }
 
 # Build and install Arduino
 getTxz "arduino/Arduino"
 
-cd ~/apps
+cd ~/Apps
 
 cd Arduino*
 

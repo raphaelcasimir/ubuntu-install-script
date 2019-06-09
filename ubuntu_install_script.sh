@@ -2,6 +2,7 @@
 # This is intended to run only on a freshly installed system. This will meet my needs but probably not yours.
 
 # Licence: Do What the Fuck You Want to Public License.
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [ "$EUID" -eq 0 ]
 then
@@ -17,7 +18,7 @@ function apty(){
 
 function getApp(){
 	curl -sL https://api.github.com/repos/$1/releases/latest \
-	| grep -E ".*\.AppImage\"" | grep "browser_download_url" \
+	| grep -E ".*\.AppImage\"" | grep "browser_download_url" | grep $2: \
 	| cut -d : -f 2,3 \
 	| tr -d \" \
 	| wget -i -
@@ -29,7 +30,7 @@ function getTxz(){
 	| cut -d : -f 2,3 \
 	| tr -d \" \
 	| wget -i -
-	tar xvf *.tar.xz -C ~/apps
+	tar xvf *.tar.xz -C ~/Apps
 }
 
 function getDeb(){
@@ -71,6 +72,8 @@ apty wget curl git screen gimp vlc octave htop python3-pip spyder3 ncdu zenmap d
 pip3 install matplotlib
 pip3 install numpy
 
+git config credential.helper store
+
 # Task manager that allows you to easily kill apps by selecting them on the screen
 apty xfce4-taskmanager
 
@@ -109,40 +112,24 @@ sudo apt update
 apty --install-suggests kicad
 # End KiCad
 
-mkdir ~/projects ~/apps
+mkdir ~/Projects ~/Apps
 
 getApp "prusa3d/Slic3r"
 getApp "Ultimaker/Cura"
-getApp "balena-io/etcher"
+getApp "balena-io/etcher" "x64"
 
-mv *.AppImage ~/apps
+mv *.AppImage ~/Apps
 
-chmod +x ~/apps/*.AppImage
+chmod +x ~/Apps/*.AppImage
 echo "Done installing AppImages"
 
+cd $DIR
 
-# Build and install Arduino
-getTxz "arduino/Arduino"
-
-cd Arduino*
-
-cd build
-
-ant dist
-
-mkdir -p /home/$USER/.local/share/icons/hicolor/
-
-cd linux/work/
-
-sudo ./install.sh
-
-sudo adduser $USER dialout
-
-echo "Done installing Arduino"
-# Done installing Arduino
+./install_arduino.sh
+./add_bookmarks.sh
 
 # Installing personal tools
-cd ~/projects
+cd ~/Projects
 
 git clone https://github.com/raphaelcasimir/raphsh.git
 git clone https://github.com/raphaelcasimir/elder-scrolling.git

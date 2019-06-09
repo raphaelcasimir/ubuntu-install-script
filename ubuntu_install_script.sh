@@ -12,13 +12,12 @@ fi
 
 # Will be using that a lot
 function apty(){
-	sudo apt install -y "$@"
-	read
+	sudo apt-get install -y "$@"
 }
 
 function getApp(){
 	curl -sL https://api.github.com/repos/$1/releases/latest \
-	| grep -E ".*\.AppImage\"" | grep "browser_download_url" | grep $2: \
+	| grep -E ".*\.AppImage\"" | grep "browser_download_url" | grep ":.*$2" \
 	| cut -d : -f 2,3 \
 	| tr -d \" \
 	| wget -i -
@@ -123,10 +122,12 @@ mv *.AppImage ~/Apps
 chmod +x ~/Apps/*.AppImage
 echo "Done installing AppImages"
 
+# Launching subscripts
 cd $DIR
 
 ./install_arduino.sh
 ./add_bookmarks.sh
+./set_launcher_favorites.sh
 
 # Installing personal tools
 cd ~/Projects

@@ -10,6 +10,9 @@ then
 	exit 0
 fi
 
+# Prepare filesystem
+./prepare_filesystem.sh
+
 # Will be using that a lot
 function apty(){
 	sudo apt-get install -y "$@"
@@ -66,14 +69,14 @@ apty docker-ce docker-ce-cli containerd.io
 echo "Done installing Docker"
 # End Docker
 
-# Essential apps
+# Essential Apps
 apty wget curl git screen gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils
 pip3 install matplotlib
 pip3 install numpy
 
 git config credential.helper store
 
-# Task manager that allows you to easily kill apps by selecting them on the screen
+# Task manager that allows you to easily kill Apps by selecting them on the screen
 apty xfce4-taskmanager
 
 # GeoGebra
@@ -102,7 +105,7 @@ echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sou
 
 sudo apt-get update
 sudo apt-get install sublime-merge sublime-text
-echo "Done installing sublime-apps"
+echo "Done installing sublime-Apps"
 # End Sublime
 
 # KiKad
@@ -110,8 +113,6 @@ sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
 sudo apt update
 apty --install-suggests kicad
 # End KiCad
-
-mkdir ~/Projects ~/Apps
 
 getApp "prusa3d/Slic3r"
 getApp "Ultimaker/Cura"
@@ -128,6 +129,8 @@ cd $DIR
 ./install_arduino.sh
 ./add_bookmarks.sh
 ./set_launcher_favorites.sh
+./gnome-theming.sh
+./gnome_extensions.sh
 
 # Installing personal tools
 cd ~/Projects

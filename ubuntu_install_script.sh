@@ -130,7 +130,13 @@ cd $DIR
 ./add_bookmarks.sh
 ./set_launcher_favorites.sh
 ./gnome-theming.sh
-./gnome_extensions.sh
+
+# Install impatience
+./gnome_extensions.sh --install --extension-id 277 --version latest
+
+# Set default animation speed to 0.5
+sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
+
 
 # Installing personal tools
 cd ~/Projects

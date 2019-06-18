@@ -70,11 +70,29 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty wget curl git screen gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils
+apty wget curl git screen gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
 pip3 install matplotlib
 pip3 install numpy
 
 git config credential.helper store
+
+# OBS
+sudo add-apt-repository ppa:obsproject/obs-studio
+sudo apt update
+sudo apt install obs-studio
+
+# Spotify
+## 1. Add the Spotify repository signing keys to be able to verify downloaded packages
+sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 931FF8E79F0876134EDDBDCCA87FF9DF48BF1C90
+
+## 2. Add the Spotify repository
+echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
+
+## 3. Update list of available packages
+sudo apt-get update
+
+## 4. Install Spotify
+sudo apt-get install spotify-client
 
 # Task manager that allows you to easily kill Apps by selecting them on the screen
 apty xfce4-taskmanager
@@ -118,6 +136,13 @@ getApp "prusa3d/Slic3r"
 getApp "Ultimaker/Cura"
 getApp "balena-io/etcher" "x64"
 
+# Get latest kdenlive
+latest_kdenlive_version=$(wget -qO - https://files.kde.org/kdenlive/release/ | grep x86_64.appimage | tail -1 | cut -d \" -f 4)
+wget $(printf https://files.kde.org/kdenlive/release/$latest_kdenlive_version)
+
+# Correct flatulous extension naming schemes
+for i in *.appimage; do mv $i $(basename $i appimage)AppImage; done
+
 mv *.AppImage ~/Apps
 
 chmod +x ~/Apps/*.AppImage
@@ -130,9 +155,14 @@ cd $DIR
 ./add_bookmarks.sh
 ./set_launcher_favorites.sh
 ./gnome-theming.sh
+./set_keyboard_shortcuts.sh
 
-# Install impatience
+# Install Gnome extensions
+## Install impatience
 ./gnome_extensions.sh --install --extension-id 277 --version latest
+
+## Install gsconnect (to connect you phone to your android through WiFi)
+./gnome_extensions.sh --install --extension-id 1319
 
 # Set default animation speed to 0.5
 sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net

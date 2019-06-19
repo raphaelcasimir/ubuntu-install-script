@@ -167,6 +167,11 @@ cd $DIR
 # Set default animation speed to 0.5
 sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
 
+# Nautilus
+## Sort files by type
+gsettings set org.gnome.nautilus.preferences default-sort-order "type"
+## Single click to open documents
+gsettings set org.gnome.nautilus.preferences click-policy 'single'
 
 # Installing personal tools
 cd ~/Projects
@@ -187,9 +192,9 @@ mv $DIR ~/Projects
 rm -r ~/Desktop/*
 
 # Need to log in and out, may as well reboot
-read -p "Do you want to reboot now?" rboot
+read -p "Do you want to reboot now? (y/n): " rboot
 
-if [ $rboot -eq "y" ]
+if [ $rboot == "y" ]
 then
 	sudo reboot
 else

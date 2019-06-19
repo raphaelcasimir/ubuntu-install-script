@@ -41,6 +41,9 @@ function getDeb(){
 	apty ./$1.deb && rm ./$1.deb
 }
 
+# Get on the French repos
+sudo gawk -i inplace '{gsub(/us/,"fr") ; print}' /etc/apt/sources.list
+
 # For Docker
 sudo apt-get update
 apty \
@@ -172,6 +175,9 @@ sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.ne
 gsettings set org.gnome.nautilus.preferences default-sort-order "type"
 ## Single click to open documents
 gsettings set org.gnome.nautilus.preferences click-policy 'single'
+
+# Clock format
+gsettings set org.gnome.desktop.interface clock-format '24h'
 
 # Installing personal tools
 cd ~/Projects

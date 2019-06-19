@@ -42,6 +42,7 @@ function getDeb(){
 }
 
 # Get on the French repos
+apty gawk
 sudo gawk -i inplace '{gsub(/us/,"fr") ; print}' /etc/apt/sources.list
 
 # For Docker
@@ -62,7 +63,7 @@ sudo add-apt-repository \
    stable"
 
 sudo apt-get update
-sudo apt-get upgrade -y
+#sudo apt-get upgrade -y
 
 sudo groupadd docker
 sudo usermod -aG docker $USER
@@ -80,9 +81,9 @@ pip3 install numpy
 git config credential.helper store
 
 # OBS
-sudo add-apt-repository ppa:obsproject/obs-studio
+sudo add-apt-repository ppa:obsproject/obs-studio -y
 sudo apt update
-sudo apt install obs-studio
+apty obs-studio
 
 # Spotify
 ## 1. Add the Spotify repository signing keys to be able to verify downloaded packages

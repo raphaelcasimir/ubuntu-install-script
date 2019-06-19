@@ -182,6 +182,10 @@ cd ../elder-scrolling
 
 ./install_mouse_scroll.sh
 
+# Cleaning up
+mv $DIR ~/Projects
+rm -r ~/Desktop/*
+
 # Need to log in and out, may as well reboot
 read -p "Do you want to reboot now?" rboot
 

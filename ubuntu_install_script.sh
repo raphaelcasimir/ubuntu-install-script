@@ -70,7 +70,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty wget curl git screen gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
+apty wget curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
 pip3 install matplotlib
 pip3 install numpy
 

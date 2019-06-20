@@ -179,6 +179,11 @@ gsettings set org.gnome.nautilus.preferences click-policy 'single'
 # Clock format
 gsettings set org.gnome.desktop.interface clock-format '24h'
 
+# Battery settings
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+
 # Installing personal tools
 cd ~/Projects
 

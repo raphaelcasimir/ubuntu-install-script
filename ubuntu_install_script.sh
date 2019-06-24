@@ -74,7 +74,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty wget curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
+apty wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
 pip3 install matplotlib
 pip3 install numpy
 
@@ -184,6 +184,9 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+
+# Keyboard layout
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+alt-intl')]"
 
 # Installing personal tools
 cd ~/Projects

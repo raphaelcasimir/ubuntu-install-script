@@ -41,6 +41,10 @@ function getDeb(){
 	apty ./$1.deb && rm ./$1.deb
 }
 
+# Get on the French repos
+apty gawk
+sudo gawk -i inplace '{gsub(/us/,"fr") ; print}' /etc/apt/sources.list
+
 # For Docker
 sudo apt-get update
 apty \
@@ -70,16 +74,16 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty wget curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
+apty wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
 pip3 install matplotlib
 pip3 install numpy
 
 git config credential.helper store
 
 # OBS
-sudo add-apt-repository ppa:obsproject/obs-studio
+sudo add-apt-repository ppa:obsproject/obs-studio -y
 sudo apt update
-sudo apt install obs-studio
+apty obs-studio
 
 # Spotify
 ## 1. Add the Spotify repository signing keys to be able to verify downloaded packages
@@ -172,6 +176,17 @@ sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.ne
 gsettings set org.gnome.nautilus.preferences default-sort-order "type"
 ## Single click to open documents
 gsettings set org.gnome.nautilus.preferences click-policy 'single'
+
+# Clock format
+gsettings set org.gnome.desktop.interface clock-format '24h'
+
+# Battery settings
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
+gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+
+# Keyboard layout
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+alt-intl')]"
 
 # Installing personal tools
 cd ~/Projects

@@ -1,31 +1,18 @@
 #!/usr/bin/env bash
 
-function getTxz(){
-	curl -sL https://api.github.com/repos/$1/releases/latest \
-	| grep -E ".*\.tar\.xz\"" | grep "browser_download_url" \
-	| cut -d : -f 2,3 \
-	| tr -d \" \
-	| wget -i -
-	tar xvf *.tar.xz -C ~/Apps
-	rm *.tar.xz
-}
-
-# Build and install Arduino
-getTxz "arduino/Arduino"
-
-cd ~/Apps
-
-cd Arduino*
-
-cd build
-
-ant dist
+wget -qO - https://www.arduino.cc/download_handler.php | grep linux64 \
+| head -1 | cut -d \" -f 4 | cut -d = -f 2 \
+| xargs -I {} printf "https://downloads.arduino.cc{}" | xargs wget
 
 mkdir -p /home/$USER/.local/share/icons/hicolor/
 
-cd linux/work/
+tar xvf *.tar.xz -C ~/Apps
+rm *.tar.xz
 
-sudo ./install.sh
+cd ~/Apps
+cd arduino*
+
+./install.sh
 
 sudo adduser $USER dialout
 

@@ -74,7 +74,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder
+apty gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 pip3 install matplotlib
 pip3 install numpy
 
@@ -168,8 +168,8 @@ cd $DIR
 ## Install gsconnect (to connect you phone to your android through WiFi)
 ./gnome_extensions.sh --install --extension-id 1319
 
-# Set default animation speed to 0.5
-sed -i 's/0.75/0.5/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
+# Set default animation speed to 0.6
+#sed -i 's/0.75/0.6/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
 
 # Nautilus
 ## Sort files by type
@@ -184,6 +184,7 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
 
 # Keyboard layout
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+alt-intl')]"
@@ -200,7 +201,12 @@ cd raphsh
 
 cd ../elder-scrolling
 
-./install_mouse_scroll.sh
+read -p "Do you want to install elder-scrolling? (y/n): " choice
+
+if [ "$choice" == "y" ]
+then
+	./install_mouse_scroll.sh
+fi
 
 # Cleaning up
 mv $DIR ~/Projects
@@ -217,3 +223,4 @@ else
 fi
 
 echo -e "\nYour PC is ready to rock."
+

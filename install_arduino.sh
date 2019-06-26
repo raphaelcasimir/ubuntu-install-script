@@ -16,5 +16,7 @@ cd arduino*
 
 sudo adduser $USER dialout
 
+rm -f ~/Desktop/*
+
 echo "Done installing Arduino"
 # Done installing Arduino

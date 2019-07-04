@@ -184,7 +184,13 @@ gsettings set org.gnome.desktop.interface clock-format '24h'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-type 'nothing'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
+gsettings set org.gnome.desktop.screensaver lock-delay 600
+
+# Sound settings
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true
+
+# Workspaces settings
+gsettings set org.gnome.mutter workspaces-only-on-primary false
 
 # Keyboard layout
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+alt-intl')]"

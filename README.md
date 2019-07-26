@@ -4,6 +4,12 @@ _Personal install script for Ubuntu-based systems from my GitLab._
 
 **Designed to be used only on fresh installs.**
 
+To launch the installer:
+
+```sh
+./ubuntu-install-script.sh
+```
+
 Tested working on Pop!OS 19.04. Should work or be a good start for anyone wanting to make an install script.
 
 I did not separate the add-repository update and apt install steps because I want to be able to copy-paste the install of a single software easily into a terminal. However doing only a single apt update for all added repositories would shorten the install process a lot.

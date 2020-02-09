@@ -74,7 +74,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty cheese gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty openscad cheese gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 pip3 install matplotlib
 pip3 install numpy
 
@@ -115,10 +115,10 @@ sudo apt update
 apty brave-keyring brave-browser
 
 # Virtualbox
-wget -q -O- http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
-sudo add-apt-repository "deb https://download.virtualbox.org/virtualbox/debian disco contrib"
-sudo apt update
-apty virtualbox
+#wget -q -O- http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
+#sudo add-apt-repository "deb https://download.virtualbox.org/virtualbox/debian disco contrib"
+#sudo apt update
+#apty virtualbox
 
 # Sublime
 wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -
@@ -197,6 +197,9 @@ gsettings set org.gnome.mutter workspaces-only-on-primary false
 
 # Keyboard layout
 gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'us'), ('xkb', 'us+alt-intl')]"
+
+# Touchpad 'natural scolling'
+gsettings set org.gnome.desktop.peripherals.touchpad natural-scroll true
 
 # Installing personal tools
 cd ~/Projects

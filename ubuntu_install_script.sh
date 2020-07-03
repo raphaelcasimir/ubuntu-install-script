@@ -6,7 +6,7 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
 
 if [ "$EUID" -eq 0 ]
 then
-	echo "Please do not this run as root"
+	echo "Please do not run this with sudo"
 	exit 0
 fi
 
@@ -108,11 +108,15 @@ getDeb geogebra6 "http://www.geogebra.org/download/deb.php?arch=amd64&ver=6"
 getDeb steam-latest "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
 
 # Brave browser
+sudo apt install apt-transport-https curl
+
 curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | sudo apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
-source /etc/os-release
-echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ $UBUNTU_CODENAME main" | sudo tee /etc/apt/sources.list.d/brave-browser-release-${UBUNTU_CODENAME}.list
+
+echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | sudo tee /etc/apt/sources.list.d/brave-browser-release.list
+
 sudo apt update
-apty brave-keyring brave-browser
+
+sudo apt install -y brave-browser
 
 # Virtualbox
 #wget -q -O- http://download.virtualbox.org/virtualbox/debian/oracle_vbox_2016.asc | sudo apt-key add -
@@ -169,7 +173,7 @@ cd $DIR
 ./gnome_extensions.sh --install --extension-id 1319
 
 # Set default animation speed to 0.6
-#sed -i 's/0.75/0.6/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
+sed -i 's/0.75/0.6/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
 
 # Nautilus
 ## Sort files by type

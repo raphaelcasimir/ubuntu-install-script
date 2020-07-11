@@ -74,7 +74,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty openscad cheese gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty kstars kstars-data openscad cheese gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 pip3 install matplotlib
 pip3 install numpy
 
@@ -106,6 +106,9 @@ getDeb geogebra6 "http://www.geogebra.org/download/deb.php?arch=amd64&ver=6"
 
 # Steam
 getDeb steam-latest "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
+
+# Slack
+getDeb slack-desktop-4.7.0-amd64 "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.7.0-amd64.deb"
 
 # Brave browser
 sudo apt install apt-transport-https curl

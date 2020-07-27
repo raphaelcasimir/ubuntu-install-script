@@ -41,9 +41,12 @@ function getDeb(){
 	apty ./$1.deb && rm ./$1.deb
 }
 
-# Get on the French repos
+# Get on the Deutsch repos
 apty gawk
-sudo gawk -i inplace '{gsub(/us/,"fr") ; print}' /etc/apt/sources.list
+sudo gawk -i inplace '{gsub(/us/,"de") ; print}' /etc/apt/sources.list
+
+#Add kstars repo
+sudo apt-add-repository ppa:mutlaqja/ppa
 
 # For Docker
 sudo apt-get update
@@ -74,9 +77,8 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty kstars kstars-data openscad cheese gnome-tweak-tool wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
-pip3 install matplotlib
-pip3 install numpy
+apty indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+pip3 install matplotlib numpy
 
 git config credential.helper store
 
@@ -110,6 +112,9 @@ getDeb steam-latest "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
 # Slack
 getDeb slack-desktop-4.7.0-amd64 "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.7.0-amd64.deb"
 
+# SmartGit
+# getDeb smartgit-20_1_3 "https://www.syntevo.com/downloads/smartgit/smartgit-20_1_3.deb"
+
 # Brave browser
 sudo apt install apt-transport-https curl
 
@@ -133,7 +138,7 @@ apty apt-transport-https
 echo "deb https://download.sublimetext.com/ apt/stable/" | sudo tee /etc/apt/sources.list.d/sublime-text.list
 
 sudo apt-get update
-sudo apt-get install sublime-merge sublime-text
+sudo apt-get install sublime-text
 echo "Done installing sublime-Apps"
 # End Sublime
 

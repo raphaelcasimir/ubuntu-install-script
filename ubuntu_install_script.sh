@@ -43,7 +43,7 @@ function getDeb(){
 
 # Get on the French repos
 apty gawk
-sudo gawk -i inplace '{gsub(/us/,"fr") ; print}' /etc/apt/sources.list
+sudo gawk -i inplace '{gsub(/fr/,"de") ; print}' /etc/apt/sources.list
 
 # For Docker
 sudo apt-get update
@@ -193,7 +193,11 @@ gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-ac-timeout 
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-type 'suspend'
 gsettings set org.gnome.settings-daemon.plugins.power sleep-inactive-battery-timeout 1200
 
-gsettings set org.gnome.desktop.screensaver lock-delay 600
+gsettings set org.gnome.desktop.lockdown disable-lock-screen 'true'
+gsettings set org.gnome.desktop.screensaver lock-enabled false
+gsettings set org.gnome.desktop.screensaver idle-activation-enabled false
+
+#gsettings set org.gnome.desktop.screensaver lock-delay 600
 
 # Sound settings
 gsettings set org.gnome.desktop.sound allow-volume-above-100-percent true

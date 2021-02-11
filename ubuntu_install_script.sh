@@ -77,8 +77,9 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 pip3 install matplotlib numpy
+sudo pip3 install --upgrade youtube_dl
 
 git config credential.helper store
 

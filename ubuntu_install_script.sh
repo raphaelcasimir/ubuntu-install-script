@@ -57,8 +57,14 @@ sudo gawk -i inplace '{gsub(/us/,"de") ; print}' /etc/apt/sources.list
 #Add kstars repo
 sudo apt-add-repository ppa:mutlaqja/ppa
 
-# For Docker
 sudo apt-get update
+
+# Essential Apps
+apty gdebi-core mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+sudo pip3 install matplotlib numpy
+sudo pip3 install --upgrade youtube_dl
+
+# For Docker
 apty \
     apt-transport-https \
     ca-certificates \
@@ -84,11 +90,6 @@ apty docker-ce docker-ce-cli containerd.io
 
 echo "Done installing Docker"
 # End Docker
-
-# Essential Apps
-apty gdebi mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
-pip3 install matplotlib numpy
-sudo pip3 install --upgrade youtube_dl
 
 git config credential.helper store
 

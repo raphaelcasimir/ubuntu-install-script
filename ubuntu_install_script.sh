@@ -26,6 +26,15 @@ function getApp(){
 	| wget -i -
 }
 
+function getGithubDeb(){
+	curl -sL https://api.github.com/repos/$1/releases/latest \
+	| grep -E ".*\.deb\"" | grep "browser_download_url" | grep ":.*$2" \
+	| cut -d : -f 2,3 \
+	| tr -d \" \
+	| wget -i -
+	sudo gdebi -n *.deb && rm *.deb
+}
+
 function getTxz(){
 	curl -sL https://api.github.com/repos/$1/releases/latest \
 	| grep -E ".*\.tar\.xz\"" | grep "browser_download_url" \
@@ -38,7 +47,7 @@ function getTxz(){
 function getDeb(){
 	# $1 is app name for debug purposes, $2 is deb URL
 	wget -q --show-progress -O $1.deb $2
-	apty ./$1.deb && rm ./$1.deb
+	sudo gdebi -n *.deb && rm *.deb
 }
 
 # Get on the Deutsch repos
@@ -77,7 +86,7 @@ echo "Done installing Docker"
 # End Docker
 
 # Essential Apps
-apty mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty gdebi mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu zenmap default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 pip3 install matplotlib numpy
 sudo pip3 install --upgrade youtube_dl
 
@@ -105,14 +114,12 @@ sudo apt-get install -y spotify-client
 # Task manager that allows you to easily kill Apps by selecting them on the screen
 apty xfce4-taskmanager
 
+getGithubDeb bitwarden/desktop
+
 # GeoGebra
 getDeb geogebra6 "http://www.geogebra.org/download/deb.php?arch=amd64&ver=6"
-
-# Steam
 getDeb steam-latest "https://steamcdn-a.akamaihd.net/client/installer/steam.deb"
-
-# Slack
-getDeb slack-desktop-4.7.0-amd64 "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.7.0-amd64.deb"
+getDeb slack-desktop-4.7.0-amd64 "https://downloads.slack-edge.com/linux_releases/slack-desktop-4.12.2-amd64.deb" # Shitty
 
 # SmartGit
 # getDeb smartgit-20_1_3 "https://www.syntevo.com/downloads/smartgit/smartgit-20_1_3.deb"
@@ -154,6 +161,7 @@ getApp "prusa3d/Slic3r"
 getApp "Ultimaker/Cura"
 getApp "balena-io/etcher" "x64"
 
+wget "https://vault.bitwarden.com/download/?app=desktop&platform=linux"
 # Get latest kdenlive
 latest_kdenlive_version=$(wget -qO - https://files.kde.org/kdenlive/release/ | grep x86_64.appimage | tail -1 | cut -d \" -f 4)
 wget $(printf https://files.kde.org/kdenlive/release/$latest_kdenlive_version)

@@ -15,7 +15,10 @@ fi
 
 # Will be using that a lot
 function apty(){
-	sudo apt-get install -y "$@"
+for pkg in "$@"
+do
+	sudo apt-get -my install $pkg
+done
 }
 
 function getApp(){
@@ -60,7 +63,7 @@ sudo apt-add-repository ppa:mutlaqja/ppa
 sudo apt-get update
 
 # Essential Apps
-apty gdebi-core mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty qtqr gdebi-core mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
 sudo pip3 install matplotlib numpy
 sudo pip3 install --upgrade youtube_dl
 
@@ -162,7 +165,6 @@ getApp "prusa3d/Slic3r"
 getApp "Ultimaker/Cura"
 getApp "balena-io/etcher" "x64"
 
-wget "https://vault.bitwarden.com/download/?app=desktop&platform=linux"
 # Get latest kdenlive
 latest_kdenlive_version=$(wget -qO - https://files.kde.org/kdenlive/release/ | grep x86_64.appimage | tail -1 | cut -d \" -f 4)
 wget $(printf https://files.kde.org/kdenlive/release/$latest_kdenlive_version)

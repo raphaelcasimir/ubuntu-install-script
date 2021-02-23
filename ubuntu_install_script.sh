@@ -91,7 +91,7 @@ apty docker-ce docker-ce-cli containerd.io
 echo "Done installing Docker"
 # End Docker
 
-git config credential.helper store
+git config --global credential.helper store
 
 # OBS
 sudo add-apt-repository ppa:obsproject/obs-studio -y

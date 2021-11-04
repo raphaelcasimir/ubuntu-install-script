@@ -166,7 +166,7 @@ echo "Done installing sublime-Apps"
 # End Sublime
 
 # KiKad
-sudo add-apt-repository --yes ppa:js-reynaud/kicad-5.1
+sudo add-apt-repository --yes ppa:kicad/kicad-5.1-releases
 sudo apt update
 apty --install-suggests kicad
 # End KiCad

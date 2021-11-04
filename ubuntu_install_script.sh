@@ -63,9 +63,19 @@ sudo apt-add-repository ppa:mutlaqja/ppa
 sudo apt-get update
 
 # Essential Apps
-apty qtqr gdebi-core mpv indi-full kstars-bleeding openscad cheese gnome-tweaks wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 ncdu default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar audacity simplescreenrecorder xclip
+apty qtqr gdebi-core mpv indi-full kstars-bleeding openscad cheese gnome-tweaks \
+wget dos2unix curl git screen gparted gimp vlc octave htop python3-pip spyder3 \
+ncdu default-jre default-jdk ant build-essential exfat-fuse exfat-utils solaar \
+audacity simplescreenrecorder xclip libjpeg8-dev zlib1g-dev python-dev python3-dev \
+libxtst-dev fzf jq
+
 sudo pip3 install matplotlib numpy
 sudo pip3 install --upgrade youtube_dl
+sudo pip3 install ueberzug
+cd ~/Apps
+git clone https://github.com/pystardust/ytfzf.git
+cd ytfzf
+sudo make install
 
 # For Docker
 apty \

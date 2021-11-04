@@ -203,6 +203,14 @@ cd $DIR
 ## Install gsconnect (to connect you phone to your android through WiFi)
 ./gnome_extensions.sh --install --extension-id 1319
 
+## Install Sound Input & Output Device Chooser
+cd ~/.local/share/gnome-shell/extensions/
+rm -rf "*sound-output-device-chooser*"
+git clone https://github.com/kgshank/gse-sound-output-device-chooser.git
+cp -r gse-sound-output-device-chooser/sound-output-device-chooser@kgshank.net .
+rm -rf "gse-sound-output-device-chooser"
+cd $DIR # Go back to working directory
+
 # Set default animation speed to 0.6
 sed -i 's/0.75/0.6/' ~/.local/share/gnome-shell/extensions/impatience@gfxmonk.net
 
